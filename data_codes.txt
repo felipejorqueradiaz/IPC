@@ -1,0 +1,11 @@
+product	code	descr	INE_name
+televisor	1	Marca,Modelo,LED,Pulgadas,Resolucion	TELEVISOR
+celular	2	Marca,Modelo,Pantalla,Memoria interna,RAM	EQUIPO DE TELEFONÍA MÓVIL
+computador	3	Marca,Modelo,Procesador,RAM,Pantalla,Tarjeta video	COMPUTADOR
+refrigerador	4	Marca,Modelo,Tipo,Frosting,Eficiencia,Consumo,Capacidad Refrigerador	REFRIGERADOR
+lavadora	5	Marca,Modelo,Tipo,Potencia,Capacidad Lavado,Capacidad Secado,Peso,Carga	LAVADORA
+secadora	6
+impresora	7	Marca,Modelo,Tipo,Tecnologia,Color	IMPRESORA
+vinos	8
+bebidas	9
+cervezas	10
