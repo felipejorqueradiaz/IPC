@@ -12,17 +12,19 @@ import numpy as np
 from sklearn.linear_model import LinearRegression
 from sklearn.ensemble import RandomForestRegressor
 #%% Indices
+path = 'C:\\Users\Felipe\Documents\Github\IPC'
+path = path.replace('\\', '/')
 
-indices = pd.read_csv('G:/Mi unidad/IPC Bienes/ipc_main/data/output/indices.csv')
+indices = pd.read_csv(path+'/data/output/indices.csv')
 
 #%% IPC
-ipc = pd.read_csv('G:/Mi unidad/IPC Bienes/ipc_main/ipc-csv.csv',
+ipc = pd.read_csv(path+'/ipc-csv.csv',
                   encoding = 'latin-1',
                   skiprows=0,
                   header=3,
                   sep=';')
 
-ipc2 = pd.read_csv('G:/Mi unidad/IPC Bienes/ipc_main/ipc-1318.csv',
+ipc2 = pd.read_csv(path+'/ipc-1318.csv',
                   encoding = 'latin-1', sep=';',decimal=',')
 ipc2.columns = list(ipc.columns)
 ipc = pd.concat([ipc, ipc2], ignore_index=True)
@@ -44,7 +46,7 @@ años = 7
 
 for prod in indices['INE_name'].unique():
     temp = ipc[ipc['INE_name']==prod]
-    temp = temp.append({'Fecha':202203, 'INE_name':prod},
+    temp = temp.append({'Fecha':202204, 'INE_name':prod},
                        ignore_index=True)
     temp = temp.sort_values(by='Fecha')
     for i in range(años):

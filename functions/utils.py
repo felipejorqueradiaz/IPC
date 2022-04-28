@@ -9,15 +9,16 @@ import numpy as np
 import glob
 import datetime
 
-def read_product(product_code, inicio=202001, fin= 202512):
-    path = 'G:/Mi unidad/IPC Bienes/ipc_main/data/input/'
+def read_product(product_code, inicio=202001, fin= 202512, path_base = 'C:/Users/Felipe/Documents/Github/IPC'):
+    path = path_base+'/data/input/'
     files = [file_name.replace('\\', '/').replace(path,'') for file_name in glob.glob(path+'*.csv')]
+    print(files)
     files = [file_name for file_name in files if (int(file_name[2:5]) == product_code) and (int(file_name[6:12]) >= inicio) and (int(file_name[6:12]) <= fin)]
     meses = [int(file_name[6:12]) for file_name in files]
     files = [pd.read_csv(path+file_name, parse_dates=True) for file_name in files]
     return pd.concat(files)
 
-def load_desc(df, product_code):
+def load_desc(df, product_code, path_base = 'C:/Users/Felipe/Documents/Github/IPC'):
     
     def prettyList(l):
         l = l.replace("[","")
@@ -28,11 +29,11 @@ def load_desc(df, product_code):
             s +=e
         return s
     
-    stores = pd.read_csv('G:/Mi unidad/IPC Bienes/ipc_main/data/input/base/stores.csv')
+    stores = pd.read_csv(path_base+'/data/input/base/stores.csv')
     stores = stores[["id_tienda", "name"]]
     
-    base = pd.read_csv('G:/Mi unidad/IPC Bienes/ipc_main/data/input/base/BASE_{}.csv'.format(str(product_code).zfill(3)))
-    dic = pd.read_csv('G:/Mi unidad/IPC Bienes/ipc_main/data_dict.csv', encoding='latin-1')
+    base = pd.read_csv(path_base+'/data/input/base/BASE_{}.csv'.format(str(product_code).zfill(3)))
+    dic = pd.read_csv(path_base+'/data_dict.csv', encoding='latin-1')
     dic = dic[dic['product_code'] == product_code].drop('product_code', axis=1)
     
     
